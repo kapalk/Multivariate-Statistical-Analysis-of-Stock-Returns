@@ -12,20 +12,20 @@ import requests
 import csv
 
 
-resp = requests.get('http://en.wikipedia.org/wiki/List_of_S%26P_500_companies')
+resp = requests.get('https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average')
 soup = BeautifulSoup(resp.text)
 table = soup.find('table', {'class': 'wikitable sortable'})
 tickers = []
 for row in table.findAll('tr')[1:]:
-    ticker = row.findAll('td')[0].text
+    ticker = row.findAll('td')[2].text
     tickers.append(ticker)
     
-with open("sp500tickers.pickle","wb") as f:
+with open("DJIAtickers.pickle","wb") as f:
     pickle.dump(tickers,f)
 
 
 tickers = [w.replace('.', '-') for w in tickers]
-with open('sp500_symbols', 'w',newline = '') as f:
+with open('DJIA_symbols', 'w',newline = '') as f:
     for element in tickers:
         writer = csv.writer(f)
         writer.writerow(element.split())
