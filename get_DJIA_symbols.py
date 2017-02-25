@@ -12,12 +12,12 @@ import requests
 import csv
 
 
-resp = requests.get('https://en.wikipedia.org/wiki/Dow_Jones_Industrial_Average')
+resp = requests.get('https://fi.wikipedia.org/wiki/OMX_Helsinki_25')
 soup = BeautifulSoup(resp.text)
 table = soup.find('table', {'class': 'wikitable sortable'})
 tickers = []
 for row in table.findAll('tr')[1:]:
-    ticker = row.findAll('td')[2].text
+    ticker = row.findAll('td')[1].text
     tickers.append(ticker)
     
 with open("DJIAtickers.pickle","wb") as f:
@@ -25,7 +25,7 @@ with open("DJIAtickers.pickle","wb") as f:
 
 
 tickers = [w.replace('.', '-') for w in tickers]
-with open('DJIA_symbols', 'w',newline = '') as f:
+with open('OMX25_symbols', 'w',newline = '') as f:
     for element in tickers:
         writer = csv.writer(f)
         writer.writerow(element.split())
