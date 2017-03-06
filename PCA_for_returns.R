@@ -7,7 +7,9 @@ library(factoextra)
 
 
 
-returns <- read.csv('returns_data',header = TRUE, row.names = 1)
+returns <- read.csv('generated data/returns_data',header = TRUE, row.names = 1)
+
+
 
 # PCA
 djia_index <- length(returns)
