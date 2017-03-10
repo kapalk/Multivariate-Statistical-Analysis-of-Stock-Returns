@@ -1,5 +1,5 @@
 setwd(paste("~/Documents/Koulu/Multivarite Statistical Analysis",
-            "/Multivariate-Statistical-Analysis-of-Stock-Returns/Multi",sep = ""))
+            "/Multivariate-Statistical-Analysis-of-Stock-Returns/",sep = ""))
 rm(list = ls())
 # install.packages('fImport')
 # install.packages('Hmisc')
@@ -26,8 +26,8 @@ cleanData <- function(df){
 }
 
 # get tickers of DJIA companies
-DJIA_symbols <- read.csv('DJIA_symbols',sep = '\n',header = FALSE)
-DJIA_symbols <- c(paste0("",unlist(DJIA_symbols)),'^DJI')
+DJIA_symbols <- read.csv('generated data//DJIA_symbols',sep = '\n',header = FALSE)
+DJIA_symbols <- c(paste0("",unlist(DJIA_symbols)))
 
 # get data
 start <- as.Date('2015-3-19')
@@ -36,16 +36,12 @@ DailyAdjPriceData <- getStockAdjacentPriceData(DJIA_symbols,end,start)
 # use tickers as colnames
 names(DailyAdjPriceData) <- DJIA_symbols
 
-# Delete col with NA values
-# DailyAdjPriceData <- cleanData(DailyAdjPriceData)
-# Delete dropped col ticker
-# DJIA_symbols <- DJIA_symbols[is.element(DJIA_symbols,colnames(DailyAdjPriceData))]
-write.csv(DailyAdjPriceData,'price_data')
+
+write.csv(DailyAdjPriceData,'generated data/price_data')
+
 
 # compute log-returns from adjacent prices
 DailyReturnsData <- as.data.frame(apply(DailyAdjPriceData,2,calculateLogReturns))
 names(DailyReturnsData) <- DJIA_symbols
-# add log return of the whole index
 
-
-write.csv(DailyReturnsData,'returns_data')
+write.csv(DailyReturnsData,'generated data/returns_data')
