@@ -68,9 +68,9 @@ names(DailyReturnsData) <- DJIA_symbols
 row.names(DailyReturnsData) <- as.Date(rownames(DailyReturnsData),format = "%Y-%m-%d")
 MMMlogReturns.mat <- as.matrix(DailyReturnsData[,1:2])
 MMMlogReturns.melt <- melt(MMMlogReturns.mat)
-MMMlogReturns.melt$Var1 <- MMMlogReturns.melt$Var1[MMMlogReturns.melt$Var2 != "MMM"]
-MMMlogReturns.melt$Var2 <- MMMlogReturns.melt$Var2[MMMlogReturns.melt$Var2 != "MMM"]
-MMMlogReturns.melt$value <- MMMlogReturns.melt$value[MMMlogReturns.melt$Var2 != "MMM"]
+MMMlogReturns.melt$Var1 <- MMMlogReturns.melt$Var1[MMMlogReturns.melt$Var2 == "MMM"]
+MMMlogReturns.melt$Var2 <- MMMlogReturns.melt$Var2[MMMlogReturns.melt$Var2 == "MMM"]
+MMMlogReturns.melt$value <- MMMlogReturns.melt$value[MMMlogReturns.melt$Var2 == "MMM"]
 colnames(MMMlogReturns.melt) <- c('Date','Company','Return')
 g <- ggplot(data = MMMlogReturns.melt, 
            aes(x = as.Date(Date),y = Return,colour = Company, group = Company)) +
