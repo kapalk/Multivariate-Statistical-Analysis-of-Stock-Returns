@@ -36,9 +36,9 @@ end <- as.Date('2017-2-19')
 DailyAdjPriceData <- getStockAdjacentPriceData(DJIA_symbols,end,start)
 # use tickers as colnames
 names(DailyAdjPriceData) <- DJIA_symbols
+summary(DailyAdjPriceData)
 
 #Visualize price data
-
 row.names(DailyAdjPriceData) <- as.Date(rownames(DailyAdjPriceData),format = "%Y-%m-%d")
 for (i in c(10,20,30)){
   PriceData.mat <- as.matrix(DailyAdjPriceData[,(i+1-10):i])
