@@ -9,9 +9,3 @@ Project status: ongoing
 - `get_DJIA_symbols.py`: scrapes DJIA tickers from wikipedia
 - `multiplot.R`: tool for plotting multiple ggplot objects in the same figure
 - `PCA_for_returns.R`: PCA and visualization of the results
-
-# Other
-- `events_US_air_traffic_GMT.txt`: fligth time data
-- `aggregated_US_air_traffic_network_undir.edg`: air trafic network
-- `US_airport_id_info.csv`: airport metadata
-- `US_air_bg.png`: map of US
